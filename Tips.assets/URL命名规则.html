@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!-- saved from url=(0189)chrome-distiller://60bdc1d7-f4fb-446e-9b83-e0262623f466_e36392ff7b67df3fb2ce9a36c71e2d7f06c8e29ed7ee414030e12d47c0ab5999/?time=372462216&url=https%3A%2F%2Fwww.jianshu.com%2Fp%2F876d4cbd84f9 -->
+<html style="--fontSizePercent:33.3333%; font-size: 14px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" id="theme-color" content="#F5F5F5">
+  <title>URL命名规则</title>
+  <link href="./URL命名规则_files/icon" rel="stylesheet">
+  <!-- Placeholder for CSS. -->
+  <link rel="stylesheet" href="chrome-distiller://60bdc1d7-f4fb-446e-9b83-e0262623f466_e36392ff7b67df3fb2ce9a36c71e2d7f06c8e29ed7ee414030e12d47c0ab5999/dom_distiller_viewer.css">
+<link href="./URL命名规则_files/css" rel="stylesheet" type="text/css"></head>
+<body class="light sans-serif" dir="auto" style="font-size: 18px;">
+  <div id="content-wrap">
+    <div id="main-content">
+      <div id="settings-container" class="desktop-only">
+        <button id="settings-toggle" type="button" aria-label="Adjust appearance settings" tabindex="0" class="">
+          <i class="material-icons">text_format</i>
+        </button>
+        <dialog id="settings-dialog">
+          <div id="settings-header">
+            <h2>Reader Mode Styling</h2>
+            <button id="close-settings-button" type="button" aria-label="Close settings" tabindex="0">
+              <i class="material-icons">close</i>
+            </button>
+          </div>
+          <div id="settings-fields">
+            <div class="setting">
+              <label for="font-family-selection" class="screen-reader-only">
+                Font Style
+              </label>
+              <select id="font-family-selection" name="font-family">
+                <option value="sans-serif" selected="">Sans-serif font</option>
+                <option value="serif">Serif font</option>
+                <option value="monospace">Monospace font</option>
+              </select>
+            </div>
+            <div class="setting">
+              <fieldset id="theme-selection">
+                <legend class="screen-reader-only">
+                  Page Theme
+                </legend>
+                <ul>
+                  <li class="theme-option">
+                    <label for="theme-option-light" class="screen-reader-only">
+                      Light
+                    </label>
+                    <input type="radio" name="theme" value="light" id="theme-option-light" class="light" checked="">
+                    <div class="checkmark"><i class="material-icons">check_circle</i></div>
+                  </li>
+                  <li class="theme-option">
+                    <label for="theme-option-sepia" class="screen-reader-only">
+                      Sepia
+                    </label>
+                    <input type="radio" name="theme" value="sepia" id="theme-option-sepia" class="sepia">
+                    <div class="checkmark"><i class="material-icons">check_circle</i></div>
+                  </li>
+                  <li class="theme-option">
+                    <label for="theme-option-dark" class="screen-reader-only">
+                      Dark
+                    </label>
+                    <input type="radio" name="theme" value="dark" id="theme-option-dark" class="dark">
+                    <div class="checkmark"><i class="material-icons">check_circle</i></div>
+                  </li>
+                </ul>
+              </fieldset>
+            </div>
+            <div class="setting" id="font-size-wrapper">
+              <label for="font-size-selection" class="screen-reader-only">
+                Font Size
+              </label>
+              <input id="font-size-selection" type="range" name="font-size" list="tickmarks" min="0" max="9" value="2">
+              <datalist class="tickmarks">
+                <option value="0" aria-labelledby="slider-label-min" class="before-thumb"></option>
+                <option value="1" class="before-thumb"></option>
+                <option value="2" class="before-thumb"></option>
+                <option value="3" class="after-thumb"></option>
+                <option value="4" class="after-thumb"></option>
+                <option value="5" class="after-thumb"></option>
+                <option value="6" class="after-thumb"></option>
+                <option value="7" class="after-thumb"></option>
+                <option value="8" class="after-thumb"></option>
+                <option value="9" aria-labelledby="slider-label-max" class="after-thumb"></option>
+              </datalist>
+              <div class="label-container">
+                <span id="slider-label-min">Small</span>
+                <span id="slider-label-max">Large</span>
+              </div>
+            </div>
+          </div>
+        </dialog>
+      </div>
+      <article>
+        <header id="article-header">
+          <div id="title-collapse">
+            <div class="vertical-center-outer">
+              <div class="vertical-center-inner">
+                <h1 id="title-holder">URL命名规则</h1>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div id="content"><noscript>必须启用 JavaScript 才能使用此功能。</noscript><div><p dir="ltr">1、URL中字母全部小写<br dir="ltr">
+2、如果有单词拼接，使用中划线‘-’，不使用下划线‘_’</p><ul><li>在搜索引擎中，把中划线当做空格处理，而下划线是被忽略的。使用中划线是对搜索引擎友好的写法</li></ul><p dir="ltr">3、资源必须采用资源名词的复数形式<br dir="ltr">
+4、层级不能超过三层<br dir="ltr">
+5、参数不允许超过3个<br dir="ltr">
+6、 如果是内容资源的URL，不允许以参数方式显示</p><ul><li>例如： <code dir="ltr">http://www.domian/com/users.html?id=1</code>需改成<code dir="ltr">http://www.domian/com/users/1</code>
+</li></ul><ul><li>GitHub API规范参考: <a href="https://api.github.com/" rel="nofollow" dir="ltr">https://api.github.com/</a>
+</li></ul><pre><code dir="ltr"><span dir="ltr">{</span>
+  <span dir="ltr">"current_user_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/user"</span><span dir="ltr">,</span>
+  <span dir="ltr">"current_user_authorizations_html_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://github.com/settings/connections/applications{/client_id}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"authorizations_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/authorizations"</span><span dir="ltr">,</span>
+  <span dir="ltr">"code_search_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/search/code?q={query}{&amp;page,per_page,sort,order}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"commit_search_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/search/commits?q={query}{&amp;page,per_page,sort,order}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"emails_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/user/emails"</span><span dir="ltr">,</span>
+  <span dir="ltr">"emojis_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/emojis"</span><span dir="ltr">,</span>
+  <span dir="ltr">"events_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/events"</span><span dir="ltr">,</span>
+  <span dir="ltr">"feeds_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/feeds"</span><span dir="ltr">,</span>
+  <span dir="ltr">"followers_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/user/followers"</span><span dir="ltr">,</span>
+  <span dir="ltr">"following_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/user/following{/target}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"gists_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/gists{/gist_id}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"hub_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/hub"</span><span dir="ltr">,</span>
+  <span dir="ltr">"issue_search_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/search/issues?q={query}{&amp;page,per_page,sort,order}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"issues_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/issues"</span><span dir="ltr">,</span>
+  <span dir="ltr">"keys_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/user/keys"</span><span dir="ltr">,</span>
+  <span dir="ltr">"notifications_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/notifications"</span><span dir="ltr">,</span>
+  <span dir="ltr">"organization_repositories_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/orgs/{org}/repos{?type,page,per_page,sort}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"organization_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/orgs/{org}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"public_gists_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/gists/public"</span><span dir="ltr">,</span>
+  <span dir="ltr">"rate_limit_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/rate_limit"</span><span dir="ltr">,</span>
+  <span dir="ltr">"repository_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/repos/{owner}/{repo}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"repository_search_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/search/repositories?q={query}{&amp;page,per_page,sort,order}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"current_user_repositories_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/user/repos{?type,page,per_page,sort}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"starred_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/user/starred{/owner}{/repo}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"starred_gists_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/gists/starred"</span><span dir="ltr">,</span>
+  <span dir="ltr">"team_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/teams"</span><span dir="ltr">,</span>
+  <span dir="ltr">"user_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/users/{user}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"user_organizations_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/user/orgs"</span><span dir="ltr">,</span>
+  <span dir="ltr">"user_repositories_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/users/{user}/repos{?type,page,per_page,sort}"</span><span dir="ltr">,</span>
+  <span dir="ltr">"user_search_url"</span><span dir="ltr">:</span> <span dir="ltr">"https://api.github.com/search/users?q={query}{&amp;page,per_page,sort,order}"</span>
+<span dir="ltr">}</span>
+</code></pre></div></div>
+      </article>
+      <div id="loading-indicator" class="hidden">
+        <!-- SVG material loading spinner. -->
+        <img src="chrome-distiller://60bdc1d7-f4fb-446e-9b83-e0262623f466_e36392ff7b67df3fb2ce9a36c71e2d7f06c8e29ed7ee414030e12d47c0ab5999/dom_distiller_material_spinner.svg">
+      </div>
+    </div>
+  </div>
+
+
+</body></html>
