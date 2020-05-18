@@ -379,7 +379,15 @@ LIMIT0,10;
 
 ==推荐使用 Timestamp ，保证直观可读和时区问题==
 
+## JDK 中定时器实现
 
+ jdk中能够实现定时器功能的大致有三种方式： 
+
+- java.util.Timer ： 等待是使用最简单的Object.wait()实现的 
+- java.util.concurrent.DelayQueue ：  DelayQueue的等待是通过Condition.await()来实现的 
+- java.util.concurrent.ScheduledThreadPoolExecutor ： 在创建ScheduledThreadPoolExecutor时，线程池的工作队列使用的是DelayedWorkQueue,它的take()方法，与DelayQueue.take()方法极其相似  
+
+ 总结，jdk中实现定时器一共有两种方式： `Object.wait() `    ` Conditon.await() `
 
 # Tools
 
