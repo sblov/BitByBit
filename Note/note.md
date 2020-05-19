@@ -143,6 +143,26 @@ WHERE
 	GROUP BY table_name
 ```
 
+### Mysql8 配置
+
+```properties
+[mysqld]
+basedir=D:\\mysql-8
+datadir=D:\\mysql-8\\data
+port=3306
+character-set-server=utf8mb4
+default-storage-engine=INNODB
+sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+
+[mysql]
+default-character-set=utf8mb4
+
+[client]
+default-character-set=utf8mb4
+```
+
+
+
 # Mysql
 
 ### mysql8.0版本 the user specified as a definer ('root'@'%') does not exist问题解决
