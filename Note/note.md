@@ -161,7 +161,9 @@ default-character-set=utf8mb4
 default-character-set=utf8mb4
 ```
 
+## 查询慢
 
+增加筛选条件，特别是状态的条件
 
 # Mysql
 

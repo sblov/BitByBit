@@ -389,6 +389,16 @@ LIMIT0,10;
 
  总结，jdk中实现定时器一共有两种方式： `Object.wait() `    ` Conditon.await() `
 
+## rm删除文件，空间未释放情况
+
+> 实际上，只有当一个文件的引用计数为0（包括硬链接数）的时候，才可能调用unlink删除，只要它不是0，那么就不会被删除。所谓的删除，也不过是文件名到 inode 的链接删除，只要不被重新写入新的数据，磁盘上的block数据块不会被删除，因此，你会看到，即便删库跑路了，某些数据还是可以恢复的。换句话说，当一个程序打开一个文件的时候（获取到文件描述符），它的引用计数会被+1，rm虽然看似删除了文件，实际上只是会将引用计数减1，但由于引用计数不为0，因此文件不会被删除。
+>
+> [详情]: https://mp.weixin.qq.com/s?__biz=MzU4MDUyMDQyNQ==&amp;mid=2247485896&amp;idx=1&amp;sn=4cd2458cca5445542d7a55c97463ada8&amp;chksm=fd54d94eca2350581e301eee43e28e4d2fdb12f0713cb38783d8c4f8eff61d42e2a35a255f26&amp;scene=126&amp;sessionid=1590109692&amp;key=3fed518d24530a2901e67009d49eca7639747877c6920ae69df55c248c1868307b17d0267fbce08b499669ac84a7c4ef87bb726056aceecdaa2b2c6d779faa6409538edb083c0408843a120c7f96b7e5&amp;ascene=1&amp;uin=MzE5MDU1OTY5&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=Aa8xLNJ%2B7iUSxvJ2wyL6QCM%3D&amp;pass_ticket=N%2B0ldEdP5x2nUskDU8Hv7xPu56rUyiuAgn8KBew2zZ9%2FpVoZqdPTT4%2BHrMQ7WeFy
+>
+> 
+
+
+
 # Tools
 
 ## IDEA 插件
@@ -404,6 +414,7 @@ LIMIT0,10;
 7. Rainbow Brackets
 8. cloud toolkit
 9.  JSON Viewer Awesome 
+10. Arthas
 
 ## Cockpit 服务器web界面监控
 
