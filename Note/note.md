@@ -697,7 +697,32 @@ server.jetty.max-http-header-size=10000000 (jetty)
         </dependency>
 ```
 
+### springboot中使用jackson容易引起的报错
 
+可能的原因：
+
+	依赖冲突，还是依赖的版本不对
+
+解决方法：
+
+	在springboot中是使用jackson要这样用
+
+```xml
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <exclusions>
+        <exclusion>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-annotations</artifactId>
+</dependency>
+```
 
 # Javascript
 
