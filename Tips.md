@@ -2,7 +2,7 @@
 
 ##  **Exception**使用建议
 
-![1582459396181](Tips.assets/1582459396181.png)
+![1582459396181](/Tips.assets/1582459396181.png)
 
 1. 不要试图通过异常来控制程序流程，比如开发一个接口，正确的做法是对入参进行非空验证，当参数为空的时候返回“参数不允许为空”，而不应该捕捉到空指针的时候返回错误提示。
 
@@ -393,11 +393,86 @@ LIMIT0,10;
 
 > 实际上，只有当一个文件的引用计数为0（包括硬链接数）的时候，才可能调用unlink删除，只要它不是0，那么就不会被删除。所谓的删除，也不过是文件名到 inode 的链接删除，只要不被重新写入新的数据，磁盘上的block数据块不会被删除，因此，你会看到，即便删库跑路了，某些数据还是可以恢复的。换句话说，当一个程序打开一个文件的时候（获取到文件描述符），它的引用计数会被+1，rm虽然看似删除了文件，实际上只是会将引用计数减1，但由于引用计数不为0，因此文件不会被删除。
 >
-> [详情]: https://mp.weixin.qq.com/s?__biz=MzU4MDUyMDQyNQ==&amp;mid=2247485896&amp;idx=1&amp;sn=4cd2458cca5445542d7a55c97463ada8&amp;chksm=fd54d94eca2350581e301eee43e28e4d2fdb12f0713cb38783d8c4f8eff61d42e2a35a255f26&amp;scene=126&amp;sessionid=1590109692&amp;key=3fed518d24530a2901e67009d49eca7639747877c6920ae69df55c248c1868307b17d0267fbce08b499669ac84a7c4ef87bb726056aceecdaa2b2c6d779faa6409538edb083c0408843a120c7f96b7e5&amp;ascene=1&amp;uin=MzE5MDU1OTY5&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=Aa8xLNJ%2B7iUSxvJ2wyL6QCM%3D&amp;pass_ticket=N%2B0ldEdP5x2nUskDU8Hv7xPu56rUyiuAgn8KBew2zZ9%2FpVoZqdPTT4%2BHrMQ7WeFy
->
-> 
+> [原文](https://mp.weixin.qq.com/s?__biz=MzU4MDUyMDQyNQ==&amp;mid=2247485896&amp;idx=1&amp;sn=4cd2458cca5445542d7a55c97463ada8&amp;chksm=fd54d94eca2350581e301eee43e28e4d2fdb12f0713cb38783d8c4f8eff61d42e2a35a255f26&amp;scene=126&amp;sessionid=1590109692&amp;key=3fed518d24530a2901e67009d49eca7639747877c6920ae69df55c248c1868307b17d0267fbce08b499669ac84a7c4ef87bb726056aceecdaa2b2c6d779faa6409538edb083c0408843a120c7f96b7e5&amp;ascene=1&amp;uin=MzE5MDU1OTY5&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=Aa8xLNJ%2B7iUSxvJ2wyL6QCM%3D&amp;pass_ticket=N%2B0ldEdP5x2nUskDU8Hv7xPu56rUyiuAgn8KBew2zZ9%2FpVoZqdPTT4%2BHrMQ7WeFy)
 
+## SpringBoot循环依赖
 
+[ 原文 ](https://mp.weixin.qq.com/s?__biz=MzIyMDI5MzA3NQ==&mid=2247489264&idx=1&sn=d55b4aec2e1155553e1576b1df82e73d&chksm=97cf644ca0b8ed5acab435bff6e8b20f5fa7576a8ed549c45a93959ff93a877cb276bf93d759&scene=126&sessionid=1591021206&key=6232b7e0f4ef35c953bb7f9a88736eb90d0bad9517c391329627bf70d9203f3fa1a20910d5e49cad3bf6e46ff9f186f94afd455ab3f7b6cbba8a40bf19c52e65ceda7880a26e7c3765c1366f84d79f21&ascene=1&uin=MzE5MDU1OTY5&devicetype=Windows+10+x64&version=62090070&lang=zh_CN&exportkey=AfkXsZcDrD4wEtwFjdmedoo%3D&pass_ticket=as5A25jpWG7VqZCDbWJjLJVUa6D4L2farOiGXhwLVVwo%2FUsbLwabnoMZ9axnIpIu)
+
+1、 原型(Prototype)的场景是不支持循环依赖的，通常会走到`AbstractBeanFactory`类中下面的判断，抛出异常 
+
+```java
+if (isPrototypeCurrentlyInCreation(beanName)) {
+  throw new BeanCurrentlyInCreationException(beanName);
+}
+```
+
+2、单例模式的循环依赖
+
+![1591023107442](/assets/1591023107442.png)
+
+​	主要依靠这三个Map来进行处理
+
+​	大概逻辑：
+
+​	1、A类需要创建，会先通过`singletonFactories`实例化 A，在将刚刚实例化好的A 放入 `earlySingletonObjects`，此时设置A实例中的成员属性；
+
+​	2、此时需要 B类的实例，于是又通过`singletonFactories`实例B，再放入`earlySingletonObjects`，
+
+​	3、但此时B 实例又 依赖 A类实例，于是查询`earlySingletonObjects`和`singletonObjects`是否存在 A 实例，发现有A实例，B实例继续剩余的属性注入，
+
+​	4、最后放入`singletonObjects`中，并将`singletonObjects`中对应B移除，此时A实例中的B已注入完成
+
+### 伪代码实现：
+
+```java
+ /**
+     * 放置创建好的bean Map
+     */
+    private static Map<String, Object> cacheMap = new HashMap<>(2);
+
+    public static void main(String[] args) {
+        // 假装扫描出来的对象
+        Class[] classes = {A.class, B.class};
+        // 假装项目初始化实例化所有bean
+        for (Class aClass : classes) {
+            getBean(aClass);
+        }
+        // check
+        System.out.println(getBean(B.class).getA() == getBean(A.class));
+        System.out.println(getBean(A.class).getB() == getBean(B.class));
+    }
+
+    @SneakyThrows
+    private static <T> T getBean(Class<T> beanClass) {
+        // 本文用类名小写 简单代替bean的命名规则
+        String beanName = beanClass.getSimpleName().toLowerCase();
+        // 如果已经是一个bean，则直接返回
+        if (cacheMap.containsKey(beanName)) {
+            return (T) cacheMap.get(beanName);
+        }
+        // 将对象本身实例化
+        Object object = beanClass.getDeclaredConstructor().newInstance();
+        // 放入缓存
+        cacheMap.put(beanName, object);
+        // 把所有字段当成需要注入的bean，创建并注入到当前bean中
+        Field[] fields = object.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            // 获取需要注入字段的class
+            Class<?> fieldClass = field.getType();
+            String fieldBeanName = fieldClass.getSimpleName().toLowerCase();
+            // 如果需要注入的bean，已经在缓存Map中，那么把缓存Map中的值注入到该field即可
+            // 如果缓存没有 继续创建
+            field.set(object, cacheMap.containsKey(fieldBeanName)
+                    ? cacheMap.get(fieldBeanName) : getBean(fieldClass));
+        }
+        // 属性填充完成，返回
+        return (T) object;
+    }
+```
+
+==透过现象看本质，不要为了看源码而看源码，应该先思考其本质==
 
 # Tools
 
