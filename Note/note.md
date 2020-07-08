@@ -506,6 +506,13 @@ class AggCondition implements Serializable{
 </if>
 ```
 
+### OGNL表达式
+
+[OGNL官方说明](https://commons.apache.org/proper/commons-ognl/language-guide.html)
+
+- `${ ognl expression }`
+- `<if test='ognl expression'></if>`
+
 # SpringBoot
 
 ### 过滤请求参数（去空格）

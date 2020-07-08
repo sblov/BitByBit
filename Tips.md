@@ -474,6 +474,56 @@ if (isPrototypeCurrentlyInCreation(beanName)) {
 
 ==透过现象看本质，不要为了看源码而看源码，应该先思考其本质==
 
+## 对象大小
+
+​	空对象默认占8字节。因为对齐填充的关系， 由于虚拟机要求对象起始地址必须是8字节的整数倍，不到8个字节对其填充会帮我们自动补齐
+
+## Synchronized底层实现
+
+​	[原文](https://juejin.im/post/5ec135e5f265da7be95a0cb3?utm_source=gold_browser_extension)
+
+​	[github.com/JavaFamily](https://github.com/AobingJava/JavaFamily)
+
+## Java技巧
+
+​	[原文](https://mp.weixin.qq.com/s?__biz=Mzg2MjEwMjI1Mg==&mid=2247495496&idx=1&sn=61bcdd6a722f93162127780d1d588c5b&chksm=ce0e58cbf979d1dd3dcf142efa2768c0253ce0bc19d730d970b6560d5a424c09bab832f41112&scene=126&sessionid=1592808405&key=f6dee7b9ef4ba659720b5da563b3bc6fc92a4fba93e190845d1f3561dd2d38fc72f74a032f19ed663518ed07b09d6abec53797b40cbe0c3e8a8db42466c27461b0d4316b9837235f055806ce27d8a6b0&ascene=1&uin=MzE5MDU1OTY5&devicetype=Windows+10+x64&version=62090070&lang=zh_CN&exportkey=AYu%2FOzA%2BTv2uikdhLwZk7hs%3D&pass_ticket=2bfhswnoOi3HmHoAwinClT6%2FP1DsLgTwfgTIwq1UTeaTyWsGqCOAvAfGXPfpruor)
+
+> bean包名
+>
+> 类转换
+>
+> bean校验
+>
+> builder
+>
+> lombok
+>
+> 重构
+>
+> 技能
+
+## hateoas
+
+## 日志收集系统
+
+ELK（Elasticsearch、Kibana、Logstash）
+
+[参考](https://mp.weixin.qq.com/s/ll_A6ddBaU99LSYmKdttYw)
+
+https://github.com/macrozheng/mall-learning/tree/master/mall-tiny-log
+
+## MySQL事务更新失效
+
+​	如果有一个事务正在执行，先执行单表查询某一条数据；
+
+​	此时如果将数据库中的值修改后，同时在该事务中做相同值的修改时，会直接返回，
+
+​	而且事务中查询的数据仍然是最开始查询出的数据，不是修改后的数据
+
+​	==MySQL 调用了 InnoDB 引擎提供的修改接口，但是引擎发现值与原来相同，不更新，直接返回==
+
+![image-20200623104910119](/assets/image-20200623104910119.png)
+
 # Tools
 
 ## IDEA 插件
@@ -490,6 +540,8 @@ if (isPrototypeCurrentlyInCreation(beanName)) {
 8. cloud toolkit
 9.  JSON Viewer Awesome 
 10. Arthas
+11. SonarLint
+12. lombok
 
 ## Cockpit 服务器web界面监控
 
@@ -506,3 +558,19 @@ if (isPrototypeCurrentlyInCreation(beanName)) {
  http://www.hutool.cn/ 
 
 ## Guava
+
+## SonarQube - Docker
+
+```shell
+docker pull postgres
+docker pull sonarqube
+```
+
+```shell
+docker run --name db -e POSTGRES_USER=sonar -e POSTGRES_PASSWORD=sonar -d postgres
+docker run --name sq --link db -e SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar -e SONARQUBE_JDBC_USERNAME=sonar -e SONARQUBE_JDBC_PASSWORD="sonar" -p 9000:9000 -d sonarqube
+```
+
+http://localhost:9000/   
+
+登录账号：admin 密码：admin
